@@ -27,9 +27,9 @@ SELECT ?e ?type ?label ?target ?source ?start ?end ?justificationType {
     OPTIONAL { ?justification aida:source ?source }
     OPTIONAL { ?justification aida:startOffset ?start }
     OPTIONAL { ?justification aida:endOffsetInclusive ?end }
-    OPTIONAL { ?justification aida:privateData ?typePrivate .
-               ?typePrivate aida:system <http://www.rpi.edu> ;
-                            aida:jsonContent ?justificationType }
+    OPTIONAL { ?justification aida:privateData [ 
+                                aida:system <http://www.rpi.edu> ;
+                                aida:jsonContent ?justificationType ]}
 }
 """
 
@@ -86,12 +86,12 @@ SELECT DISTINCT ?e ?type ?source ?start ?end {
 
 query_document_types = """
 SELECT DISTINCT ?source ?fileType {
-    ?justification a aida:TextJustification ;
-                   aida:system <http://www.rpi.edu> ;
+    ?justification aida:system <http://www.rpi.edu> ;
                    aida:source ?source ;
-                   aida:privateData ?filePrivate .
-    ?filePrivate aida:system <http://www.rpi.edu/fileType> ;
-                 aida:jsonContent ?fileType
+                   aida:privateData [
+                        aida:jsonContent ?fileType ;
+                        aida:system <http://www.rpi.edu/fileType> 
+                   ]
 }
 """
 

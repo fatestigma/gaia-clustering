@@ -44,7 +44,7 @@ def retrieve_dataframe(endpoint: RemoteEndpoint, query: str, path: str,
 def load_dataframe(path: str, fallback: Optional[Callable]=None):
     if not os.path.exists(path):
         if not fallback:
-            logging.log(logging.WARN, "Dataframe {} doesn't exist, and no back plan.".format(path))
+            logging.log(logging.WARN, "Dataframe {} doesn't exist, and no backup plan.".format(path))
         logging.log(logging.INFO, "Dataframe {} doesn't exist, try to query it from source".format(path))
         fallback(path)
     logging.log(logging.INFO, "Loading data from {}".format(path))
